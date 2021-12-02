@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace common {
-std::vector<std::string> readInput(const std::string& filename) {
+std::vector<std::string> readInput(const std::string &filename) {
     std::vector<std::string> result;
 
     std::ifstream input{filename};
@@ -20,7 +20,7 @@ std::vector<std::string> readInput(const std::string& filename) {
     return result;
 }
 
-std::vector<std::string> split(const std::string& str, const std::string& delim) {
+std::vector<std::string> split(const std::string &str, const std::string &delim) {
     std::vector<std::string> tokens;
     size_t prev = 0, pos = 0;
     do {
@@ -33,10 +33,18 @@ std::vector<std::string> split(const std::string& str, const std::string& delim)
     return tokens;
 }
 
-inline std::string trim(const std::string& s) {
+inline std::string trim(const std::string &s) {
     auto wsfront = std::find_if_not(s.begin(), s.end(), [](int c) { return std::isspace(c); });
     auto wsback =
         std::find_if_not(s.rbegin(), s.rend(), [](int c) { return std::isspace(c); }).base();
     return (wsback <= wsfront ? std::string() : std::string(wsfront, wsback));
+}
+
+std::string getFilename(int argc, char *argv[]) {
+    if (argc != 2) {
+        throw std::runtime_error{"Argument required!"};
+    }
+
+    return argv[1];
 }
 }  // namespace common
