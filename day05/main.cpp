@@ -15,7 +15,7 @@ struct Line {
 };
 
 std::vector<Line> parseLines(const std::vector<std::string> &input) {
-    const std::regex pattern{R"#((\d+),(\d+) -> (\d+),(\d+))#"};
+    const std::regex pattern{R"#((\d+),(\d+),(\d+),(\d+))#"};
     std::vector<Line> lines;
 
     for (const auto &l : input) {
@@ -126,7 +126,6 @@ int main(int argc, char *argv[]) {
         const auto lines = parseLines(input);
 
         std::cout << "part 1 " << calculateNumberOfOverlaps(lines) << std::endl;
-        std::cout << "part 2 " << calculateNumberOfOverlapsWithDiagonalLines(lines) << std::endl;
     } catch (std::exception &e) {
         std::cerr << e.what() << std::endl;
         return 1;
