@@ -47,4 +47,14 @@ std::string getFilename(int argc, char *argv[]) {
 
     return argv[1];
 }
+
+std::vector<int> convertToNumbers(const std::vector<std::string> &input) {
+    const auto splitString = common::split(input.at(0), ",");
+    std::vector<int> numbers;
+
+    std::transform(splitString.begin(), splitString.end(), std::back_inserter(numbers),
+                   [](const std::string &s) { return std::stoi(s); });
+
+    return numbers;
+}
 }  // namespace common
