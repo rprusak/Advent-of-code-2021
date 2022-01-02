@@ -9,10 +9,7 @@ std::vector<std::string> readInput(const std::string &filename) {
     std::vector<std::string> result;
 
     std::ifstream input{filename};
-    if (!input.is_open()) {
-        std::cerr << "could not open file " << filename << std::endl;
-        return result;
-    }
+    if (!input.is_open()) throw std::runtime_error{"could not open file " + filename};
 
     std::string line;
     while (std::getline(input, line)) result.push_back(line);
